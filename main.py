@@ -51,6 +51,7 @@ class Number:
         return self.number
 
     def _normalize(self, result_str: str) -> str:
+        """Нормализация длины числа до длины self.n. Если число больше, старшие разряды отбрасываются."""
         sign = "-" if result_str.startswith('-') else ""
         body = result_str[1:] if sign else result_str
         if len(body) > self.n:
@@ -60,6 +61,7 @@ class Number:
 
     @staticmethod
     def __transf_dec_to_m(m: int, number: int) -> str:
+        """Перевод из десятичной системы счисления в m-ричную."""
         if number == 0:
             return "0"
         sign = "-" if number < 0 else ""
@@ -72,6 +74,7 @@ class Number:
 
     @staticmethod
     def __transf_to_dec(m: int, number: str) -> int:
+        """Перевод из m-ричной системы счисления в десятичную."""
         sign = -1 if number[0] == '-' else 1
         body = number[1:] if sign == -1 else number
         result = 0
@@ -82,6 +85,7 @@ class Number:
 
     @staticmethod
     def __check_number(number: str, m: int) -> None:
+        """Валидация ввода числа."""
         if not number:
             raise ValueError("Пустая строка не является числом")
         body = number[1:] if number[0] == '-' else number
